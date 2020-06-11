@@ -1,0 +1,54 @@
+.profile-container {
+    width: 550px;
+    margin: auto;
+    margin-top: 50px;
+    display: flex;
+    background-color: crimson;
+    padding: 10px;
+    align-items: flex-start;
+}
+
+.profile-container .profile-image img {
+    height: 450px;
+}
+
+.profile-container .profile-info {
+    padding-left: 30px;
+}
+
+.profile-container .profile-info h3 {
+    margin: 0;
+    text-align: center;
+    color: ghostwhite;
+}
+
+.profile-container .profile-info p {
+    font-size: 16px;
+    text-align: center;
+    color: gold;
+}
+
+.user-all_posts {
+    display: flex;
+    max-width: 100%;
+    padding: 20px 15px;
+    flex-wrap: nowrap;
+}
+
+.user-all_posts .user-posts_container {
+    width: 450px;
+    margin: auto;
+    border: 1px solid maroon;
+    padding: 20px;
+    margin: 20px auto;
+}
+
+.user-all_posts .user-posts_container .user-post_title {
+    font-size: 28px;
+    font-weight: 500;
+}
+
+.user-all_posts .user-posts_container .user-post_description {
+    font-size: 22px;
+    font-weight: 400;
+}
