@@ -35,3 +35,11 @@
     width: 45%;
     margin: 20px;
 }
+
+.btn-liked svg {
+    fill: maroon;
+}
+
+.btn-unliked svg {
+    fill: mistyrose;
+}

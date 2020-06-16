@@ -1,20 +1,68 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import './Post.css'
-import { Card, CardHeader, Avatar, IconButton, CardMedia, CardContent, Typography, Grid } from '@material-ui/core'
+import { Card, CardHeader, Avatar, IconButton, CardMedia, CardContent, Typography, Grid, CardActions } from '@material-ui/core'
+// import IconButton from '@material-ui/core/IconButton'
+import FavoriteIcon from '@material-ui/icons/Favorite'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 
 const Post = props => {
-    // console.log(props.posts);
+    // console.log(props.author);
+    const [ postAuthor, setPostAuthor ] = useState('')
+    const [ likedState, setLikedState ] = useState({
+        liked: false,
+        value: 0
+    })
     const posts = props.posts
-    console.log(posts);
+    const authors = props.author
+    // console.log(authors.name);
+    // let elems = posts.concat(authors)
+    // console.log(elems);
+    // authors.map(author => {
+    //     setPostAuthor(author)
+    // })
+
+    // posts.map(post => {
+    //     if(post.author === setPostAuthor.id) {
+    //         console.log(post.author)
+    //     }
+    // })
+    
+    // posts.map(post => {
+    //     // console.log(post.author)
+    //     // if(post.author === authors) {}
+    //     // setPostAuthor(author)
+    // })
+
+    // if(postAuthor.id === posts.id) {
+    //     // console.log('match', postAuthor.id)
+    // }
+    // else {
+    //     console.log('not match')
+    // }
+
+    const onLikeHandler = () => {
+
+        if(likedState.liked === true) {
+            setLikedState({
+                liked: false
+            })
+        }
+        else {
+            setLikedState({
+                liked: true
+            })
+        }
+    }
+
+    let likeClass = likedState.liked ? 'btn-liked' : 'btn-unliked'
     
     return (
         <Grid className="posts-container" lg="9">
             {
                 posts.map(post => {
                     return (
-                        <Card className="post-card">
+                        <Card className="post-card" key={post.id}>
                             <CardHeader
                                 avatar={
                                 <Avatar aria-label="recipe">
@@ -41,11 +89,11 @@ const Post = props => {
                                 {post.description}
                                 </Typography>
                             </CardContent>
-                            {/* <CardActions disableSpacing>
-                                <IconButton aria-label="add to favorites">
-                                <FavoriteIcon />
+                            <CardActions disableSpacing>
+                                <IconButton aria-label="add to favorites" className={likeClass} onClick={onLikeHandler}>
+                                    <FavoriteIcon />
                                 </IconButton>
-                                <IconButton aria-label="share">
+                                {/* <IconButton aria-label="share">
                                 <ShareIcon />
                                 </IconButton>
                                 <IconButton
@@ -57,8 +105,8 @@ const Post = props => {
                                 aria-label="show more"
                                 >
                                 <ExpandMoreIcon />
-                                </IconButton>
-                            </CardActions> */}
+                                </IconButton> */}
+                            </CardActions>
                         </Card>
     
                     )

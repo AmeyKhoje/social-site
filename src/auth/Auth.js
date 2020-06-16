@@ -1,5 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { AuthContext } from '../context/auth-context'
+import { Container, Button, Grid, Card, TextField } from '@material-ui/core'
+import './Auth.css'
+import Particles from 'react-particles-js'
 
 const Auth = () => {
     const auth = useContext(AuthContext)
@@ -99,60 +102,95 @@ const Auth = () => {
         
     }
     return (
-        <div className="auth-container">
-            {!loggedIn && (
-                <div>
-                    <div>
-                        <label>Enter Your Name:</label>
-                    </div>
-                    <div>
-                        <input type="text" name="name" onChange={onChangeHandler} />
-                    </div>
-                </div>
-            ) }
-            {!loggedIn && (
-                <div>
-                    <div>
-                        <label for="">
-                            Choose profile picture:
-                        </label>
-                    </div>
-                    <div>
-                        <input type="file" accept=".png, .jpg, .jpeg" onChange={handleImageUpload} />
-                    </div>
-                </div>
-            )}
-            <div>
-                <div>
-                    <label for="">
-                        Enter email:
-                    </label>
-                </div>
-                <div>
-                    <input type="text" name="email" onChange={onChangeHandler} />
-                </div>
-            </div>
-            <div>
-                <div>
-                    <label for="">
-                        Enter Password:
-                    </label>
-                </div>
-                <div>
-                    <input type="password" name="password" onChange={onChangeHandler} />
-                </div>
-            </div>
-            <div>
-                <button onClick={authSubmit}>
-                    {!loggedIn ? 'SIGN-Up' : 'LOGIN-Up'  }
-                </button>
-            </div>
-            <div>
-                <button onClick={switchMode}>
-                    Switch to {!loggedIn ? 'Login' : 'Sign-Up'  }
-                </button>
-            </div>
-        </div>
+        <form className="auth-container">
+            
+            <Container>
+                <Grid sm={12} lg={4} className="m-auto">
+                    <Card className="auth-card">
+                        <div className="auth-head">
+                            <h2>
+                                {!loggedIn ? 'Sign Up' : 'Login'}
+                            </h2>
+                        </div>
+                        {!loggedIn && (
+                            <div>
+                                {/* <div>
+                                    <label>Enter Your Name:</label>
+                                </div> */}
+                                <div className="text-center input-cont">
+                                    {/* <input type="text" name="name" onChange={onChangeHandler} /> */}
+                                    <TextField id="outlined-basic" label="Name" variant="outlined" name="name" onChange={onChangeHandler} />
+                                </div>
+                            </div>
+                        ) }
+                        {!loggedIn && (
+                            <div>
+                                <div>
+                                    <label for="">
+                                        Choose profile picture:
+                                    </label>
+                                </div>
+                                <div>
+                                    <input type="file" accept=".png, .jpg, .jpeg" onChange={handleImageUpload} />
+                                </div>
+                            </div>
+                        )}
+                        <div>
+                            {/* <div>
+                                <label for="">
+                                    Enter email:
+                                </label>
+                            </div> */}
+                            <div className="text-center input-cont">
+                                {/* <input type="text" name="email" onChange={onChangeHandler} /> */}
+                                <TextField id="outlined-basic" label="Email" variant="outlined" name="email" onChange={onChangeHandler} />
+                            </div>
+                        </div>
+                        <div>
+                            {/* <div>
+                                <label for="">
+                                    Enter Password:
+                                </label>
+                            </div> */}
+                            <div className="text-center input-cont">
+                                {/* <input type="password" name="password" onChange={onChangeHandler} /> */}
+                                <TextField id="outlined-basic" label="Password" type="passeord" variant="outlined" name="password" onChange={onChangeHandler} />
+                            </div>
+                        </div>
+                        <div className="text-center input-cont">
+                            <Button variant="contained" color="secondary" onClick={authSubmit} type="submit">
+                                {!loggedIn ? 'SIGN-Up' : 'LOGIN'  }
+                            </Button>
+                        </div>
+                        <div className="text-center input-cont">
+                            <Button variant="contained" color="primary" onClick={switchMode}>
+                                Switch to {!loggedIn ? 'Login' : 'Sign-Up'  }
+                            </Button>
+                        </div>
+                    </Card>
+                </Grid>
+            </Container>
+            <Particles
+               params={{
+                "particles": {
+                    "number": {
+                        "value": 130
+                    },
+                    "size": {
+                        "value": 2
+                    }
+                },
+                "interactivity": {
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "repulse"
+                        }
+                    }
+                }
+            }} 
+            />
+        </form>
     )
 }
 

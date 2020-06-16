@@ -12,9 +12,10 @@ const Navigation = (props) => {
     // const [ authUserId, setAuthUserId ] = useState('')
     console.log(props.usrId)
     let id = auth.userId
-    // console.log(id);
+    console.log(auth.userId);
+    
     useEffect(() => {
-        const getProfile = async () => {
+        const getProfile = async() => {
             try {
                 const profData = await fetch(`http://localhost:5000/api/users/profile/5ede43603739311178752d11`)
                 let convProfData = await profData.json()
@@ -60,7 +61,9 @@ const Navigation = (props) => {
                                     <div className="prof-img">
                                         <img src={profileData.image} alt=""/>
                                     </div>
-                                    {profileData.name}
+                                    <div>
+                                        {profileData.name}
+                                    </div>
                                 </NavLink>}
                             </Nav>
                         </Navbar.Collapse>
