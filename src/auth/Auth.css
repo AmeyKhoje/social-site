@@ -1,0 +1,28 @@
+.auth-card {
+    padding: 20px;
+    position: absolute;
+    left: 33%;
+    top: 30%;
+    width: 450px;
+}
+
+.auth-container {
+    background-color: #000;
+}
+
+.input-cont {
+    padding-bottom: 20px;
+}
+
+.input-cont .MuiFormControl-root {
+    width: 90%;
+}
+
+.auth-head h2 {
+    font-size: 28px;
+}
+
+.auth-head {
+    text-align: center;
+    padding: 20px 0 40px 0;
+}
