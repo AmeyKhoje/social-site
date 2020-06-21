@@ -4,6 +4,7 @@ import Post from './post/Post'
 const Posts = () => {
     const [posts, setPosts] = useState([])
     const [ postAuthors, setPostAuthors ] = useState([])
+    const [ postAuthor, setPostAuthor ] = useState([])
     
     useEffect(() => {
         const fetchPosts = async () => {
@@ -19,7 +20,22 @@ const Posts = () => {
                 
                 
                 setPosts(finalData)
-                console.log(posts);
+                let userFetch
+                try {
+
+                    finalData.map(dta => async() => {
+                        console.log(dta.author);
+                        userFetch = await fetch(`http;//localhost:5000/api/users/user/${dta.author}`)
+                        setPostAuthor(userFetch)
+                        console.log(postAuthor);
+                        
+                    })
+                    console.log(fetchData.posts.id);
+                    
+                    // const postUser = await fetch(`http://localhost:5000/api/users/user/${}`)
+                } catch (error) {
+                    
+                }
             }
             catch(err) {
                 console.log('failer to fetch');
@@ -36,6 +52,7 @@ const Posts = () => {
                 let postFetchedDataFinal = postFetchedData.users
                 setPostAuthors(postFetchedDataFinal)
                 console.log(postFetchedDataFinal);
+                
                 
             } catch (error) {
                 console.log('error')

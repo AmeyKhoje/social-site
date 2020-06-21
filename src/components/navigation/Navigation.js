@@ -57,7 +57,7 @@ const Navigation = (props) => {
                                         <img src={profileData.image} alt="" />
                                     </div>
                                     <div>
-                                        {profileData.name}
+                                        Amey
                                     </div>
                                 </NavLink>
                                 }

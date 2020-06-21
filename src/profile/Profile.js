@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './Profile.css'
 
 const Profile = (props) => {
@@ -38,6 +39,9 @@ const Profile = (props) => {
                             </div>
                             <div>
                                 <img src={userpost.image} alt="" className="w-100"/>
+                            </div>
+                            <div>
+                                <Link to={`post/${userpost.id}`}>Update</Link>
                             </div>
                         </div>
                     ))
