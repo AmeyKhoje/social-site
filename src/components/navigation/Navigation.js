@@ -59,10 +59,10 @@ const Navigation = (props) => {
                                 </NavLink>}
                                 {auth.isLoggedIn && <NavLink to="/auth" onClick={auth.logout} className="prof-link" >
                                     <div className="prof-img">
-                                        <img src={profileData.image} alt=""/>
+                                        <img src="" alt=""/>
                                     </div>
                                     <div>
-                                        {profileData.name}
+                                        Amey
                                     </div>
                                 </NavLink>}
                             </Nav>

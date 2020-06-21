@@ -108,7 +108,6 @@ const Post = props => {
                                 </IconButton> */}
                             </CardActions>
                         </Card>
-    
                     )
                 })
             }

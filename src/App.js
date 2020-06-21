@@ -10,6 +10,7 @@ import Form from './feed/AddPost/DbConfig/DbConfig';
 import Auth from './auth/Auth'
 import { AuthContext } from './context/auth-context'
 import ProfileInfo from './profile/profile-main/ProfileInfo';
+import UpdatePost from './feed/AddPost/UpdatePost';
 
 let logoutTimer
 
@@ -91,6 +92,9 @@ function App() {
 			</Route>
 			<Route path="/profile">
 				<ProfileInfo />
+			</Route>
+			<Route path="/post/:postId">
+				<UpdatePost />
 			</Route>
 			<Redirect to="/" />
 		</Switch>
