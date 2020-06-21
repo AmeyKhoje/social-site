@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import './Post.css'
 import { Card, CardHeader, Avatar, IconButton, CardMedia, CardContent, Typography, Grid, CardActions } from '@material-ui/core'
@@ -14,6 +15,8 @@ const Post = props => {
         value: 0
     })
     const posts = props.posts
+    console.log(posts);
+    
     const authors = props.author
     // console.log(authors.name);
     // let elems = posts.concat(authors)
@@ -54,10 +57,11 @@ const Post = props => {
             })
         }
     }
-
     let likeClass = likedState.liked ? 'btn-liked' : 'btn-unliked'
+    let linked = (<Link to="/addpost" >Create New Post</Link>)
     
     return (
+        <div>
         <Grid className="posts-container" lg="9">
             {
                 posts.map(post => {
@@ -112,6 +116,7 @@ const Post = props => {
                 })
             }
         </Grid>
+        </div>
     )    
 }
 
