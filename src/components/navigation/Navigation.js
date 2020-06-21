@@ -6,24 +6,19 @@ import { AuthContext } from '../../context/auth-context'
 import './Nav.css'
 
 const Navigation = (props) => {
-    // console.log(props.name)
     const auth = useContext(AuthContext)
-    const [ profileData, setProfileData ] = useState([])
-    // const [ authUserId, setAuthUserId ] = useState('')
-    console.log(props.usrId)
-    let id = auth.userId
-    console.log(auth.userId);
-    
+    const [profileData, setProfileData] = useState({})
+    console.log("profileData:", profileData);
+
     useEffect(() => {
-        const getProfile = async() => {
+        const getProfile = async () => {
             try {
-                const profData = await fetch(`http://localhost:5000/api/users/profile/5ede43603739311178752d11`)
-                let convProfData = await profData.json()
-                const finalProfData = convProfData.profile
-                setProfileData(finalProfData)
-                // console.log(finalProfData);
+                const profData = await fetch(`http://localhost:5000/api/users/profile/${auth.userId}`);
+                const convProfData = await profData.json();
+                const finalProfData = convProfData.profile;
+                setProfileData({ ...finalProfData })
             } catch (error) {
-                console.log(error);   
+                console.log(error);
             }
         }
         getProfile()
@@ -37,7 +32,7 @@ const Navigation = (props) => {
                         <NavbarBrand href="/">Demo</NavbarBrand>
                         <Navbar.Collapse>
                             <Nav className="m-auto navbar-cust_menu">
-                                {auth.isLoggedIn &&<NavItem>
+                                {auth.isLoggedIn && <NavItem>
                                     <NavLink to="/">
                                         Feed
                                     </NavLink>
@@ -53,19 +48,21 @@ const Navigation = (props) => {
                                     </NavLink>
                                 </NavItem>}
                             </Nav>
-                            <Nav className="ml-auto navbar-cust_menu">
+                            <Nav className="ml-auto mr-5 navbar-cust_menu">
                                 {!auth.isLoggedIn && <NavLink to='/auth'>
                                     Login
                                 </NavLink>}
-                                {auth.isLoggedIn && <NavLink to="/auth" onClick={auth.logout} className="prof-link" >
+                                {auth.isLoggedIn && <NavLink to="/auth" className="prof-link" >
                                     <div className="prof-img">
-                                        <img src={profileData.image} alt=""/>
+                                        <img src={profileData.image} alt="" />
                                     </div>
                                     <div>
                                         {profileData.name}
                                     </div>
-                                </NavLink>}
+                                </NavLink>
+                                }
                             </Nav>
+                            <Nav><NavLink to='/auth' onClick={auth.logout} className="prof-link">Logout</NavLink></Nav>
                         </Navbar.Collapse>
                     </Navbar>
                 </Col>

@@ -154,7 +154,7 @@ const Auth = () => {
                             </div> */}
                             <div className="text-center input-cont">
                                 {/* <input type="password" name="password" onChange={onChangeHandler} /> */}
-                                <TextField id="outlined-basic" label="Password" type="passeord" variant="outlined" name="password" onChange={onChangeHandler} />
+                                <TextField id="outlined-basic" label="Password" type="password" variant="outlined" name="password" onChange={onChangeHandler} />
                             </div>
                         </div>
                         <div className="text-center input-cont">

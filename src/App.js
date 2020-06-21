@@ -73,8 +73,6 @@ function App() {
   let routes;
 
   if (token) {
-	  console.log('hey');
-	  
 	  routes = (
 		<Switch>
 			<Route path="/" exact>
@@ -96,8 +94,6 @@ function App() {
 		</Switch>
 	  )
   } else {
-	  console.log('hello');
-	  
 	  routes = (<Switch>
 		  <Route path="/auth" exact>
 				<Auth />

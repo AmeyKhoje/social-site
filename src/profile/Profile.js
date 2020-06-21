@@ -7,7 +7,6 @@ const Profile = (props) => {
     console.log(props.userposts)
     console.log(data.name);
     
-    
     return (
         <div>
             <div className="profile-container">

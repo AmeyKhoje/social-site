@@ -28,9 +28,6 @@ app.use(bodyParser.json())
 app.use('/uploads/images', express.static(path.join('uploads', 'images')));
 
 // app.use(cors())
-
-
-
 app.use('/api/places', placesRoutes)
 app.use('/api/users', usersRoutes)
 app.use('/api/product', productsRoutes)
@@ -56,10 +53,10 @@ app.use((error, req, res, next) => {
 })
 
 mongoose
-    .connect('mongodb://localhost:27017/Mern', { useNewUrlParser: true, useUnifiedTopology: true, retryWrites:false })
+    .connect('mongodb+srv://vishal:viyankhoje@cluster0.mlpii.mongodb.net/mern?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true, retryWrites:false })
     .then(() => {
         app.listen(5000)
-        console.log('Connected !!!')
+        console.log('Connected !!! Node server listening: localhost:5000')
     })
     .catch(err => {
         console.log(err);
