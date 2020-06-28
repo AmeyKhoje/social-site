@@ -11,6 +11,23 @@ DUMMY_USERS = [{
     email: "test@mail.com",
     password: "test@this.password"
 }]
+
+const getUsersById = async(req, res, next) => {
+    const userId = req.params.uid
+    let userOfPost
+    try {
+        userOfPost = await User.findById(userId)
+    } catch (err) {
+        console.log(err.toString())
+    }
+
+    if (!userOfPost) {
+        console.log('Cannot find user for provided id')
+    }
+
+    res.json({ user: userOfPost.toObject({ getters: true }) })
+}
+
 const getUsers = async(req, res, next) => {
     let users
     try {
@@ -39,8 +56,7 @@ const signup = async(req, res, next) => {
         console.log('Success')
     }
     const { name, email, password } = req.body
-    console.log("req.body:", req.body);
-    
+
     let existingUser
     try {
         existingUser = await User.findOne({ email: email })
@@ -153,7 +169,35 @@ const getProfile = async(req, res, next) => {
     }
 }
 
+const updateUser = async(req, res, next) => {
+    const { name, email } = req.body
+
+    const userId = req.params.usrId
+
+    let updatedUser
+    try {
+        updatedUser = await User.findById(userId)
+    } catch (error) {
+        console.log(error);
+        return next(error)
+    }
+
+    updatedUser.name = name
+    updatedUser.email = email
+
+    try {
+        await updatedUser.save()
+    } catch (error) {
+        console.log('Cannot update User');
+
+    }
+
+    res.status(200).json({ user: updatedUser.toObject({ getters: true }) })
+}
+
 exports.getUsers = getUsers
 exports.signup = signup
 exports.login = login
 exports.getProfile = getProfile
+exports.getUsersById = getUsersById
+exports.updateUser = updateUser

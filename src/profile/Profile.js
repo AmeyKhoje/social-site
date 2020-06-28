@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { Button } from '@material-ui/core'
 import './Profile.css'
 
 const Profile = (props) => {
@@ -7,10 +8,24 @@ const Profile = (props) => {
     const data = props.profile
     console.log(props.userposts)
     console.log(data.name);
-    
+    if(!data && !props.userposts){
+        return (
+            <h1>
+                You Dont Have Any POsts
+            </h1>
+        )
+    }
+
+    // const deletePostHandler = async(e) => {
+    //     e.preventDefault()
+
+    //     await fetch(`http://localhost:5000/api/social/deletepost/${userpost.id}`)
+    // }
+    let darkClass = props.darkMode ? 'prof-dark' : 'prof-light'
+    let darkProfPost = props.darkMode ? 'prof-card_dark' : 'prof-card_light'
     return (
         <div>
-            <div className="profile-container">
+            <div className={`profile-container ${darkClass}`}>
                 <div className="profile-image">
                     <img src={data.image} alt="" className="w-100" />
                 </div>
@@ -27,9 +42,9 @@ const Profile = (props) => {
                     </div>
                 </div>
             </div>
-            <div className="user-all_posts">
+            <div className={`user-all_posts ${darkProfPost}`}>
                 {
-                    props.userposts.map( userpost => (
+                    props.userposts && props.userposts.map( userpost => (
                         <div className="user-posts_container">
                             <div className="user-post_title">
                                 {userpost.title}
@@ -40,11 +55,21 @@ const Profile = (props) => {
                             <div>
                                 <img src={userpost.image} alt="" className="w-100"/>
                             </div>
-                            <div>
-                                <Link to={`post/${userpost.id}`}>Update</Link>
+                            <div className="userpost-actions">
+                                <div className="userpost-update">
+                                    <Link to={`post/${userpost.id}`}>Update</Link>
+                                </div>
+                                <div className="username-delete">
+                                    <Button>Delete</Button>
+                                </div>
                             </div>
                         </div>
                     ))
+                }
+                {
+                    !props.userposts && <h4>
+                        Your Dont Have Any Posts To Show
+                    </h4>
                 }
             </div>
         </div>

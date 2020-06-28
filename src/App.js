@@ -1,4 +1,5 @@
 import React, {useState ,useCallback, useEffect} from 'react';
+import './App.css'
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import Navigation from './components/navigation/Navigation'
 import Layout from './components/layout/Layout';
@@ -11,9 +12,11 @@ import Auth from './auth/Auth'
 import { AuthContext } from './context/auth-context'
 import ProfileInfo from './profile/profile-main/ProfileInfo';
 import UpdatePost from './feed/AddPost/UpdatePost';
+// import VerticalNav from './navigation/vertNav/VerticalNav'
+import VerticalNav from './components/navigation/vertNav/VerticalNav'
+import UpdateProfile from './profile/profile-main/UpdateProfile'
 
 let logoutTimer
-
 function App() {
 	// const [wether, setWether] = useState({
 	// 	name: []
@@ -22,7 +25,36 @@ function App() {
   const [tokenExpirationDate, setTokenExpirationDate] = useState();
 	// const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userId, setUserId] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false)
+  console.log(isDarkMode);
 
+//   const darkMode = useCallback(() => {
+// 	  if(isDarkMode === true) {
+// 		  setIsDarkMode(false)
+// 	  }
+// 	  else {
+// 		setIsDarkMode(true)
+// 	  }
+
+//   },[])
+//   console.log(isDarkMode);
+
+const darkModeHandler = () => {
+	if(isDarkMode === true) {
+		setIsDarkMode(false)
+		console.log('true');
+		
+	}
+	else {
+		setIsDarkMode(true)
+	}
+	// console.log(isDarkMode);
+
+}
+
+
+  
+  
   const login = useCallback((uid, token, expirationDate) => {
 	setToken(token);
     setUserId(uid);
@@ -48,6 +80,10 @@ function App() {
     localStorage.removeItem('userData');
   }, []);
 
+//   const updateProfile = useCallback((usrid) => {
+// 	setUserId(usrid)
+//   })
+
   useEffect(() => {
     if (token && tokenExpirationDate) {
       const remainingTime = tokenExpirationDate.getTime() - new Date().getTime();
@@ -70,9 +106,13 @@ function App() {
     }
   }, [login]);
 
+//   useEffect(() => {
+
+//   },[updateProfile])
+
 
   let routes;
-
+  let darkBack = isDarkMode ? 'dark-back' : 'light-back'
   if (token) {
 	  routes = (
 		<Switch>
@@ -94,12 +134,15 @@ function App() {
 			<Route path="/post/:postId">
 				<UpdatePost />
 			</Route>
+			<Route path="/editprof">
+				<UpdateProfile />
+			</Route>
 			<Redirect to="/" />
 		</Switch>
 	  )
   } else {
 	  routes = (<Switch>
-		  <Route path="/auth" exact>
+		    <Route path="/auth" exact>
 				<Auth />
 			</Route>
 			<Redirect to="/auth" />
@@ -112,11 +155,13 @@ function App() {
         token: token,
         userId: userId,
         login: login,
-        logout: logout
+		logout: logout,
+		isDark: isDarkMode
 	  }}>
 		  <Router>
-		  	<Navigation usrId={userId} />
-			<main>
+		  	<Navigation usrId={userId} darkMode={darkModeHandler} />
+			  <VerticalNav />
+			<main className={`main-container ${darkBack}`}>
 				{routes}
 			</main>
 		  </Router>

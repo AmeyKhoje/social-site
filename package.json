@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^7.2.1",
     "bootstrap": "^4.5.0",
     "idb": "^5.0.4",
+    "nodemailer": "^6.4.10",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
@@ -19,7 +20,9 @@
     "react-indexed-db": "^1.0.12",
     "react-particles-js": "^3.2.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "react-spinners": "^0.9.0",
+    "react-toastify": "^6.0.6"
   },
   "scripts": {
     "start": "react-scripts start",

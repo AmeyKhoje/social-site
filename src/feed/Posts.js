@@ -1,14 +1,17 @@
 import React, {useEffect, useState} from 'react'
 import Post from './post/Post'
+import { RingLoader } from 'react-spinners'
 
 const Posts = () => {
     const [posts, setPosts] = useState([])
     const [ postAuthors, setPostAuthors ] = useState([])
     const [ postAuthor, setPostAuthor ] = useState([])
+    const [ loadingPost, setLoadingPost ] = useState(false)
     
     useEffect(() => {
         const fetchPosts = async () => {
             try {
+                setLoadingPost(true)
                 const postsFetch = await fetch('http://localhost:5000/api/social/post')
                 
                 const fetchData = await postsFetch.json()
@@ -17,25 +20,8 @@ const Posts = () => {
                 // console.log(fetchData);
                 const finalData = fetchData.posts
                 console.log(finalData);
-                
-                
                 setPosts(finalData)
-                let userFetch
-                try {
-
-                    finalData.map(dta => async() => {
-                        console.log(dta.author);
-                        userFetch = await fetch(`http;//localhost:5000/api/users/user/${dta.author}`)
-                        setPostAuthor(userFetch)
-                        console.log(postAuthor);
-                        
-                    })
-                    console.log(fetchData.posts.id);
-                    
-                    // const postUser = await fetch(`http://localhost:5000/api/users/user/${}`)
-                } catch (error) {
-                    
-                }
+                setLoadingPost(false)
             }
             catch(err) {
                 console.log('failer to fetch');
@@ -43,6 +29,8 @@ const Posts = () => {
         }
         fetchPosts()
     },[])
+    // console.log(posts);
+    
 
     useEffect(() => {
         const fetchUsersPost = async() => {
@@ -60,10 +48,20 @@ const Posts = () => {
         }
         fetchUsersPost()
     }, [])
-
-
+    const dataUser = postAuthors
+    let duUserId = []
+    dataUser.map(du => {
+        duUserId = du._id
+        // setPostAuthor(du._id)
+        console.log(duUserId);
+    })
+    
+    
+    
     return (
-        <Post posts={posts} author={postAuthors} />
+        <div>
+            <Post posts={posts} author={postAuthors} loading={loadingPost} />
+        </div>
     )
 }
 

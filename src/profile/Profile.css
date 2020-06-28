@@ -3,9 +3,16 @@
     margin: auto;
     margin-top: 50px;
     display: flex;
-    background-color: crimson;
     padding: 10px;
     align-items: flex-start;
+}
+
+.prof-dark {
+    background-color: #423D46;
+}
+
+.prof-light {
+    background-color: crimson;
 }
 
 .profile-container .profile-image img {
@@ -28,6 +35,19 @@
     color: gold;
 }
 
+.prof-card_dark .user-posts_container {
+    background-color: #1A1E1E;
+    /* box-shadow: 8px 8px 18px rgba(0, 0, 0, 0.4), -8px -8px 18px rgba(255, 255, 255, 0.4); */
+    box-shadow: 18px 18px 18px #0a0c0c, -15px -15px 18px #2a3030;
+    /* box-shadow: inset 5px 5px 10px #060707, inset -5px -5px 10px #0c0f0f; */
+    padding: 10px;
+}
+
+.prof-card_dark .user-posts_container .user-post_title,
+.user-post_description {
+    color: #E2E2E2;
+}
+
 .user-all_posts {
     display: flex;
     max-width: 100%;
@@ -38,17 +58,67 @@
 .user-all_posts .user-posts_container {
     width: 450px;
     margin: auto;
-    border: 1px solid maroon;
-    padding: 20px;
+    border-radius: 5px;
+    /* padding: 20px; */
     margin: 20px auto;
 }
 
 .user-all_posts .user-posts_container .user-post_title {
     font-size: 28px;
     font-weight: 500;
+    padding: 10px 20px 8px 20px;
 }
 
 .user-all_posts .user-posts_container .user-post_description {
+    padding: 0 20px 10px 20px;
     font-size: 22px;
     font-weight: 400;
+}
+
+
+/* .username-delete {
+    padding: 10px 20px 8px 20px;
+} */
+
+.prof-card_dark .userpost-update a {
+    color: #E2E2E2;
+}
+
+.userpost-update a {
+    color: #423fff;
+    /* box-shadow: 0px 6px 10px 3px rgba(250, 124, 233, 0.15), -6px 0px 10px 0px rgba(255, 255, 255, 0.15); */
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5), -3px -3px 5px rgba(255, 255, 255, 0.4);
+    text-decoration: none;
+    padding: 5px 15px;
+    transition: all 0.5s;
+    border-radius: 3px;
+}
+
+.username-delete Button {
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5), -3px -3px 5px rgba(255, 255, 255, 0.4);
+}
+
+.username-delete Button:hover {
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7), -3px -3px 8px rgba(255, 255, 255, 0.6);
+}
+
+.prof-card_dark .username-delete Button {
+    color: #E2E2E2;
+    font-weight: 500;
+    text-transform: none;
+}
+
+.userpost-update a:hover {
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7), -3px -3px 8px rgba(255, 255, 255, 0.6);
+}
+
+.userpost-actions {
+    display: flex;
+    padding: 10px 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-all_posts .user-posts_container img {
+    height: 300px;
 }

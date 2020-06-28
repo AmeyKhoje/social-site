@@ -28,6 +28,9 @@ app.use(bodyParser.json())
 app.use('/uploads/images', express.static(path.join('uploads', 'images')));
 
 // app.use(cors())
+
+
+
 app.use('/api/places', placesRoutes)
 app.use('/api/users', usersRoutes)
 app.use('/api/product', productsRoutes)
@@ -42,9 +45,9 @@ app.use((req, res, next) => {
 app.use((error, req, res, next) => {
     if (req.file) {
         fs.unlink(req.file.path, err => {
-          console.log(err);
+            console.log(err);
         });
-      }
+    }
     if (res.headerSent) {
         return next(error)
     }
@@ -53,12 +56,22 @@ app.use((error, req, res, next) => {
 })
 
 mongoose
-    .connect('mongodb+srv://vishal:viyankhoje@cluster0.mlpii.mongodb.net/mern?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true, retryWrites:false })
+    .connect('mongodb://localhost:27017/Mern', { useNewUrlParser: true, useUnifiedTopology: true, retryWrites: false })
     .then(() => {
         app.listen(5000)
-        console.log('Connected !!! Node server listening: localhost:5000')
+        console.log('Connected !!!')
     })
     .catch(err => {
         console.log(err);
 
     })
+    // mongoose
+    //     .connect('mongodb+srv://Anuj:anuj12345@cluster0-x4it7.mongodb.net/test?retryWrites=true&w=majority&ssl=true', { useNewUrlParser: true, useUnifiedTopology: true })
+    //     .then(() => {
+    //         app.listen(5000)
+    //         console.log('Connected !!!')
+    //     })
+    //     .catch(err => {
+    //         console.log(err);
+
+//     })

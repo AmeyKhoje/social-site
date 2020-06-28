@@ -1,0 +1,36 @@
+.vertNav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 200px;
+    padding: 15px;
+    background-color: crimson;
+    z-index: 999;
+}
+
+.dark-nav {
+    background-color: #363636;
+}
+
+.vertNav .vertNav-items_cont ul {
+    list-style-type: none;
+    text-align: center;
+    padding: 0;
+}
+
+.vertNav .vertNav-items_cont ul li a {
+    font-size: 18px;
+    color: floralwhite;
+    text-decoration: none;
+    padding: 7px;
+}
+
+.vertNav .vertNav-items_cont ul li {
+    margin: 10px 0;
+}
+
+.vertNav .vertNav-items_cont .vertNav-items_list {
+    padding-top: 50px;
+    margin: auto;
+}

@@ -2,6 +2,7 @@
     padding: 30px 20px 0px 20px;
     display: flex;
     flex-wrap: wrap;
+    transition: all 0.8s;
 }
 
 .post-single {
@@ -10,6 +11,24 @@
     box-shadow: 0px 3px 20px 0px rgba(0, 0, 0, 0.02), 0px 2px 4px 0px rgba(0, 0, 0, 0.4), 0px 1px 5px 0px rgba(0, 0, 0, 0.05);
     margin: 20px 15px;
     cursor: pointer;
+}
+
+
+/* .posts-dark {
+    background-color: #6b778d;
+} */
+
+.posts-dark .post-card {
+    background-color: #423D46;
+}
+
+.posts-dark .post-card .card-head {
+    color: #E2E2E2;
+}
+
+.posts-dark .post-card span,
+p {
+    color: #E2E2E2 !important;
 }
 
 .post-title {
@@ -34,6 +53,7 @@
 .post-card {
     width: 45%;
     margin: 20px;
+    transition: all 1s;
 }
 
 .btn-liked svg {
@@ -42,4 +62,41 @@
 
 .btn-unliked svg {
     fill: mistyrose;
+}
+
+.spinner {
+    margin: auto;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    width: max-content;
+    margin-top: 20%;
+    margin-left: 40%;
+}
+
+.create-post_link {
+    padding: 10px 30px;
+    margin: auto;
+    /* position: absolute; */
+    color: black;
+    background-color: darksalmon;
+    font-weight: 700;
+    /* margin-top: 40%; */
+    text-decoration: none;
+    transition: all 0.5s;
+    border-radius: 5px;
+}
+
+.create-post_link-cont {
+    margin-top: 20%;
+    margin-left: 42%;
+    width: max-content;
+}
+
+.create-post_link:hover {
+    color: darkslategrey;
+    text-decoration: none;
+    background-color: hotpink;
+    box-shadow: 0px 3px 15px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
 }

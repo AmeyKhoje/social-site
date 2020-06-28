@@ -62,6 +62,7 @@ const Auth = () => {
                 .then(response => {
                     auth.login(response.userId, response.token)
                     auth.userId(response.userId)
+                    
                 })
                 // console.log(responseData);
                 

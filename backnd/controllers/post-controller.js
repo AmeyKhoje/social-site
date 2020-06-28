@@ -104,7 +104,66 @@ const getPostsById = async(req, res) => {
     res.json({ posts: postsOfUser.toObject({ getters: true }) })
 }
 
-// getPostsByUserId = async(req, res, next) => {
+const updatePost = async(req, res, next) => {
+    const { title, description } = req.body
+
+    const postId = req.params.psid
+
+    let updatedPost
+
+    try {
+        updatedPost = await Post.findById(postId)
+            // console.log(updatedPost);
+
+    } catch (error) {
+        console.log(error);
+        return next(error)
+    }
+
+    updatedPost.title = title
+    updatedPost.description = description
+
+    try {
+        await updatedPost.save()
+        console.log(updatedPost)
+    } catch (error) {
+        console.log('cannot update post');
+
+    }
+
+    res.status(200).json({ post: updatedPost })
+}
+
+const deletePost = async(req, res, next) => {
+        const postId = req.params.dpid
+
+        let post
+        try {
+            post = await Post.findById(postId).populate('author')
+        } catch (error) {
+            res.json({ message: 'Failed' })
+            return next(error)
+        }
+
+        if (!post) {
+            res.json({ message: 'Cannot find post' })
+                // return next()
+            console.log('cannot find');
+
+        }
+
+        try {
+            await post.remove()
+            post.author.post.pull(post)
+            await post.author.save()
+        } catch (error) {
+            // res.json({ message: 'Failed to delete Post...' })
+            return next(error)
+        }
+
+        res.status(200).json({ message: 'Deleted Post successfully', place: deletePost })
+    }
+    // getPostsByUserId = async(req, res, next) => {
 
 // }
 
@@ -112,3 +171,5 @@ exports.createPost = createPost
 exports.getPost = getPost
 exports.getPostsById = getPostsById
 exports.getPostByUserId = getPostByUserId
+exports.updatePost = updatePost
+exports.deletePost = deletePost

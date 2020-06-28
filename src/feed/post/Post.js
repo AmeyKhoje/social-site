@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import './Post.css'
@@ -6,9 +6,12 @@ import { Card, CardHeader, Avatar, IconButton, CardMedia, CardContent, Typograph
 // import IconButton from '@material-ui/core/IconButton'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
+import { RingLoader, ScaleLoader } from 'react-spinners'
+import { AuthContext } from '../../context/auth-context'
 
 const Post = props => {
     // console.log(props.author);
+    const auth = useContext(AuthContext)
     const [ postAuthor, setPostAuthor ] = useState('')
     const [ likedState, setLikedState ] = useState({
         liked: false,
@@ -57,17 +60,22 @@ const Post = props => {
             })
         }
     }
+    let darkClass = auth.isDark ? 'posts-dark' : 'posts-light'
     let likeClass = likedState.liked ? 'btn-liked' : 'btn-unliked'
-    let linked = (<Link to="/addpost" >Create New Post</Link>)
-    
-    return (
-        <div>
-        <Grid className="posts-container" lg="9">
+    let linked
+    if(posts.length === 0) {
+        linked = (<div className="create-post_link-cont"><Link to="/addpost" className="create-post_link" >Create New Post</Link></div>)
+    }
+    else {
+        linked = (<div>
+            {props.loading && <ScaleLoader className="spinner" loading={props.loading} color={"#D73636"} height={40} width={5} radius={2} margin={3} />}
+        <Grid className={`posts-container ${darkClass}`} sm="12" lg="12">
             {
                 posts.map(post => {
                     return (
                         <Card className="post-card" key={post.id}>
                             <CardHeader
+                                className="card-head"
                                 avatar={
                                 <Avatar aria-label="recipe">
                                     R
@@ -116,6 +124,11 @@ const Post = props => {
                 })
             }
         </Grid>
+        </div>)
+    }
+    return (
+        <div>
+            {linked}
         </div>
     )    
 }

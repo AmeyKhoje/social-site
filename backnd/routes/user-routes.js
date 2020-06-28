@@ -7,8 +7,7 @@ const router = express.Router()
 router.get('/', usersController.getUsers)
 
 router.post('/signup',
-		fileUpload.single('image'),
-		[check('name').not().isEmpty(),
+    fileUpload.single('image'), [check('name').not().isEmpty(),
         check('email').normalizeEmail().isEmail(),
         check('password').isLength({ min: 6 })
     ],
@@ -17,5 +16,9 @@ router.post('/signup',
 router.post('/login', usersController.login)
 
 router.get('/profile/:prid', usersController.getProfile)
+
+router.get('/user/:uid', usersController.getUsersById)
+
+router.patch('/updateuser/:usrId', usersController.updateUser)
 
 module.exports = router
