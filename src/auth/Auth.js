@@ -3,9 +3,14 @@ import { AuthContext } from '../context/auth-context'
 import { Container, Button, Grid, Card, TextField } from '@material-ui/core'
 import './Auth.css'
 import Particles from 'react-particles-js'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import {css} from 'glamor'
+import {usePosition} from 'use-position'
 
 const Auth = () => {
     const auth = useContext(AuthContext)
+    const [location, setLocation] = useState(false)
     const [file, setFile] = useState()
     const [previewUrl, setPreviewUrl] = useState();
     const [ loggedIn, setLoggedIn ] = useState(true)
@@ -32,7 +37,6 @@ const Auth = () => {
         })
         
     }
-    console.log(login.name);
     const handleImageUpload = event => {
         let pickedFile = event.target.files[0]
         setFile(pickedFile)
@@ -41,11 +45,15 @@ const Auth = () => {
     const switchMode = () => {
         setLoggedIn(prevMode => !prevMode)
     }
-
+    const getLoc = () => {
+        
+    }
+    
+    let date = new Date()
+    let time = date.getTime()
     const authSubmit = async (e) => {
         e.preventDefault()
         if(loggedIn){
-            console.log('login');
             try {
                 await fetch(
                   'http://localhost:5000/api/users/login',
@@ -58,17 +66,64 @@ const Auth = () => {
                     'Content-Type': 'application/json'
                   }}
                 )
-                .then(response => response.json())
-                .then(response => {
-                    auth.login(response.userId, response.token)
-                    auth.userId(response.userId)
-                    
+                .then(async response => {
+                    if(response.ok) {
+                        const testResp = await response.json()
+                        toast.success(`Logged in successfully Today's date is : ${date.getDate()}/${date.getMonth()}/${date.getFullYear()} Time is ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`, {
+                            autoClose: false,
+                            closeOnClick: true,
+                            closeButton: true,
+                        })
+                        if(date.getHours() < 12 && date.getHours() >= 4){
+                            
+                            setTimeout(() => {
+                                toast.dark('GoodMorning!!!')
+                            }, 5000)
+                        }
+                        else if(date.getHours() >= 12 && date.getHours() <= 17) {
+                            
+                            setTimeout(() => {
+                                toast('GoodAfternoon!!!', {
+                                    draggable: true,
+                                    draggablePercent: 100,
+                                })
+                            }, 5000)
+                        }
+                        else if(date.getHours() > 17 && date.getHours() <= 21) {
+                            
+                            setTimeout(() => {
+                                toast.dark('GoodEvening')
+                            }, 5000)
+                        }
+                        else if(date.getHours() > 21 && date.getHours() <= 24) {
+                            setTimeout(() => {
+                                toast.dark('GoodNight!!!')
+                            }, 5000)
+                        }
+                        else {
+                            toast('Cant get timestap')
+                        }
+                        auth.login(testResp.userId, testResp.token)
+                        // auth.userId(testResp.userId)
+                        
+                    }
+                    else {
+                        toast.error("Wrong Credentials.. Please Enter Correct One to Log in");
+                    }
                 })
+                
+                // .then(response => {
+                //     auth.login(response.userId, response.token)
+                //     auth.userId(response.userId)
+                    
+                // })
+                
                 // console.log(responseData);
                 
                 // auth.login(responseData.userId, responseData.token);
               } catch (err) {
                   console.log('cantt');
+                  toast.error("Please try after some time");
                   
               }
         }
@@ -87,17 +142,31 @@ const Auth = () => {
                     
                     body: formData
                 })
-                .then(response => response.json()
-                .then(response => {
-                    console.log(response);
-                    auth.login(response.userId, response.token)
-                    auth.userId(response.userId)
-                }))
+                .then(async response => {
+                    if(response.ok) {
+                        const testResp = await response.json()
+                        toast.success('Welcome...!!! Create your post to see them in feed and enjoy', {
+                            autoClose: false,
+                            closeOnClick: true,
+                            closeButton: true
+                        })
+                        auth.login(testResp.userId, testResp.token)
+                    }
+                    else {
+                        toast.error("Wrong Credentials.. Please Enter Correct One to Log in");
+                    }
+                    
+                })
+                // .then(response => {
+                //     auth.login(response.userId, response.token)
+                //     // auth.userId(response.userId)
+                //     // toast.success("Welcome!!!");
+                // })
                 
                 
             } catch (error) {
                 console.log('cant sign in');
-                
+                toast.error("Wrong Credentials.. Please Enter Correct One");
             }
         }
         
@@ -131,8 +200,11 @@ const Auth = () => {
                                         Choose profile picture:
                                     </label>
                                 </div>
+                                {previewUrl && <div className="image-preview">
+                                    <img src={previewUrl} alt="" className="img-fluid"/>
+                                </div>}
                                 <div>
-                                    <input type="file" accept=".png, .jpg, .jpeg" onChange={handleImageUpload} />
+                                    <input type="file" accept=".png, .jpg, .jpeg" onChange={handleImageUpload} className="file-upload" />
                                 </div>
                             </div>
                         )}
@@ -191,6 +263,7 @@ const Auth = () => {
                 }
             }} 
             />
+            <ToastContainer />
         </form>
     )
 }

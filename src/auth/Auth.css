@@ -26,3 +26,104 @@
     text-align: center;
     padding: 20px 0 40px 0;
 }
+
+.toast-afternoon {
+    background-color: rgb(226, 208, 43);
+}
+
+.Toastify__toast--success {
+    background-color: rgb(66, 165, 19) !important;
+}
+
+.file-upload {
+    margin-bottom: 20px;
+}
+
+.image-preview {
+    width: 200px;
+    height: 200px;
+    margin: 20px;
+}
+
+.image-preview img {
+    width: 100%;
+    height: 200px;
+}
+
+.admin-cont {
+    height: 50vw;
+    background-color: rgb(188, 192, 196);
+    padding: 50px 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.admin-auth {
+    max-width: 400px;
+    margin: auto;
+    border-radius: 5px;
+    background-color: rgb(238, 224, 198);
+    padding: 40px 25px;
+    margin: 10px auto;
+    box-shadow: 0px 20px 22px 0px rgba(74, 93, 102, 0.118);
+}
+
+.admin-auth_head {
+    padding: 10px 0;
+}
+
+.admin-auth_head h1 {
+    font-size: 26px;
+    color: rgb(97, 6, 6);
+    font-weight: 700;
+}
+
+.form-input_cont {
+    padding: 10px 0;
+}
+
+.form-input_cont label {
+    margin: 0;
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.form-input_cont input {
+    /* margin: 5px 0; */
+    padding: 7px 12px;
+    border-radius: 4px;
+    width: fit-content;
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    font-size: 16px;
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.07);
+}
+
+.form-input_cont input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.form-admin_login-submit {
+    padding: 7px 0;
+    text-align: center;
+}
+
+.form-admin_login-submit button {
+    padding: 7px 15px;
+    margin: 3px auto;
+    width: max-content;
+    background-color: rgb(221, 111, 221);
+    color: rgb(10, 9, 9);
+    border: none;
+    box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.2);
+    font-weight: 600;
+    border-radius: 4px;
+    transition: all 0.7s;
+}
+
+.form-admin_login-submit button:hover {
+    background-color: rgb(196, 74, 196);
+    box-shadow: 0px 7px 20px 0px rgba(0, 0, 0, 0.2);
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.3);
+}

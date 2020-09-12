@@ -6,15 +6,7 @@ import './Profile.css'
 const Profile = (props) => {
     // console.log(props.profile.name);
     const data = props.profile
-    console.log(props.userposts)
-    console.log(data.name);
-    if(!data && !props.userposts){
-        return (
-            <h1>
-                You Dont Have Any POsts
-            </h1>
-        )
-    }
+    
 
     // const deletePostHandler = async(e) => {
     //     e.preventDefault()
@@ -23,9 +15,16 @@ const Profile = (props) => {
     // }
     let darkClass = props.darkMode ? 'prof-dark' : 'prof-light'
     let darkProfPost = props.darkMode ? 'prof-card_dark' : 'prof-card_light'
+    if(!data && !props.userposts){
+        return (
+            <h1>
+                You Dont Have Any Posts
+            </h1>
+        )
+    }
     return (
         <div>
-            <div className={`profile-container ${darkClass}`}>
+            {data && <div className={`profile-container ${darkClass}`}>
                 <div className="profile-image">
                     <img src={data.image} alt="" className="w-100" />
                 </div>
@@ -41,7 +40,7 @@ const Profile = (props) => {
                         </p>
                     </div>
                 </div>
-            </div>
+            </div>}
             <div className={`user-all_posts ${darkProfPost}`}>
                 {
                     props.userposts && props.userposts.map( userpost => (

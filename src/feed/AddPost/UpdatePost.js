@@ -75,12 +75,12 @@ const UpdatePost = () => {
     
     return (
         <div>
-            <form onSubmit={postUpdater}>
+            <form onSubmit={postUpdater} style={{ padding: 20, boxShadow: '0px 3px 6px 0px rgba(0,0,0,0.1)', width: '50%', margin: '50px auto 20px auto' }}>
                 <div>
-                    <input type="text" name="title" onChange={handlechange} value={formDataToUpdate.title} />
+                    <input type="text" name="title" onChange={handlechange} value={formDataToUpdate.title} style={{ padding: 10, width: '100%', borderRadius: 5, marginBottom: 10 }} />
                 </div>
                 <div>
-                    <input type="text" name="description" onChange={handlechange} value={formDataToUpdate.description} />
+                    <input type="text" name="description" onChange={handlechange} value={formDataToUpdate.description} style={{ padding: 10, width: '100%', borderRadius: 5, marginBottom: 10 }} />
                 </div>
                 <div>
                     <button type="submit" className="btn-update">Update Post</button>

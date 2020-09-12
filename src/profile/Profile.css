@@ -51,8 +51,9 @@
 .user-all_posts {
     display: flex;
     max-width: 100%;
+    flex-wrap: wrap;
     padding: 20px 15px;
-    flex-wrap: nowrap;
+    /* flex-wrap: nowrap; */
 }
 
 .user-all_posts .user-posts_container {
@@ -121,4 +122,9 @@
 
 .user-all_posts .user-posts_container img {
     height: 300px;
+}
+
+.update-form {
+    padding: 20px;
+    margin-top: 60px;
 }

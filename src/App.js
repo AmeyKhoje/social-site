@@ -12,9 +12,13 @@ import Auth from './auth/Auth'
 import { AuthContext } from './context/auth-context'
 import ProfileInfo from './profile/profile-main/ProfileInfo';
 import UpdatePost from './feed/AddPost/UpdatePost';
+import AdminAuth from './auth/AdminAuth'
 // import VerticalNav from './navigation/vertNav/VerticalNav'
 import VerticalNav from './components/navigation/vertNav/VerticalNav'
 import UpdateProfile from './profile/profile-main/UpdateProfile'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 let logoutTimer
 function App() {
@@ -26,8 +30,6 @@ function App() {
 	// const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userId, setUserId] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false)
-  console.log(isDarkMode);
-
 //   const darkMode = useCallback(() => {
 // 	  if(isDarkMode === true) {
 // 		  setIsDarkMode(false)
@@ -42,8 +44,6 @@ function App() {
 const darkModeHandler = () => {
 	if(isDarkMode === true) {
 		setIsDarkMode(false)
-		console.log('true');
-		
 	}
 	else {
 		setIsDarkMode(true)
@@ -52,8 +52,6 @@ const darkModeHandler = () => {
 
 }
 
-
-  
   
   const login = useCallback((uid, token, expirationDate) => {
 	setToken(token);
@@ -69,7 +67,6 @@ const darkModeHandler = () => {
         expiration: tokenExpirationDate.toISOString()
       })
 	);
-	console.log(token);
 	
   }, []);
 
@@ -91,7 +88,6 @@ const darkModeHandler = () => {
     } else {
       clearTimeout(logoutTimer);
 	}
-	console.log(token);
 	
   }, [token, logout, tokenExpirationDate]);
 
@@ -145,6 +141,9 @@ const darkModeHandler = () => {
 		    <Route path="/auth" exact>
 				<Auth />
 			</Route>
+			<Route path="/admin" exact>
+				<AdminAuth />
+			</Route>
 			<Redirect to="/auth" />
 	  </Switch>)
   }
@@ -160,11 +159,11 @@ const darkModeHandler = () => {
 	  }}>
 		  <Router>
 		  	<Navigation usrId={userId} darkMode={darkModeHandler} />
-			  <VerticalNav />
 			<main className={`main-container ${darkBack}`}>
 				{routes}
 			</main>
 		  </Router>
+		  <ToastContainer />
 	  </AuthContext.Provider>
 	// <div>
 	// 	<Router>

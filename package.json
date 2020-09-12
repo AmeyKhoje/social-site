@@ -9,6 +9,7 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "bootstrap": "^4.5.0",
+    "glamor": "^2.20.40",
     "idb": "^5.0.4",
     "nodemailer": "^6.4.10",
     "prop-types": "^15.7.2",
@@ -22,7 +23,8 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "react-spinners": "^0.9.0",
-    "react-toastify": "^6.0.6"
+    "react-toastify": "^6.0.6",
+    "use-position": "0.0.7"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -69,13 +69,13 @@ const UpdateProfile = () => {
     }
 
     return (
-        <div>
+        <div  style={{ padding: 20, boxShadow: '0px 3px 6px 0px rgba(0,0,0,0.1)', width: '50%', margin: '50px auto 20px auto' }}>
             <form onSubmit={updateProfileHandler}>
                 <div>
-                    <input type="text" name="name" value={userInfoToUpdate.name} onChange={changeHandler} />
+                    <input type="text" name="name" value={userInfoToUpdate.name} onChange={changeHandler} style={{ padding: 10, width: '100%', borderRadius: 5, marginBottom: 10 }} />
                 </div>
                 <div>
-                    <input type="email" name="email" value={userInfoToUpdate.email} onChange={changeHandler} />
+                    <input type="email" name="email" value={userInfoToUpdate.email} onChange={changeHandler} style={{ padding: 10, width: '100%', borderRadius: 5, marginBottom: 10 }} />
                 </div>
                 <div>
                     <button type="submit" className="btn-profileupdate">Update Profile</button>

@@ -13,8 +13,6 @@ const Navigation = (props) => {
     const [profileData, setProfileData] = useState({})
     const [ toggleDrop, setToggleDrop ] = useState(false)
     const [ isModeDark, setIsModeDark ] = useState(false)
-    console.log("profileData:", profileData);
-    console.log(auth.isDark);
     
     useEffect(() => {
         const getProfile = async () => {
@@ -41,7 +39,7 @@ const Navigation = (props) => {
             setIsModeDark(true)
         }
     }
-    console.log(auth.isDark)
+    
     // const darkModeHandler = () => {
     //     if(isModeDark === false) {
     //         setIsModeDark(true)
@@ -58,7 +56,7 @@ const Navigation = (props) => {
             <Row>
                 <Col lg={12} className="p-0">
                     <Navbar expand="lg" className={`navbar-cust ${navMainClass}`}>
-                        <NavbarBrand href="/">Demo</NavbarBrand>
+                        <NavbarBrand href="/">Socially</NavbarBrand>
                         <Navbar.Collapse>
                             <Nav className="m-auto navbar-cust_menu">
                                 {auth.isLoggedIn && <NavItem>
@@ -78,9 +76,9 @@ const Navigation = (props) => {
                                 </NavItem>}
                             </Nav>
                             <Nav className="ml-auto mr-5 navbar-cust_menu align-items-center">
-                                {!auth.isLoggedIn && <NavLink to='/auth' className="link-login">
+                                {/* {!auth.isLoggedIn && <NavLink to='/auth' className="link-login">
                                     Login
-                                </NavLink>}
+                                </NavLink>} */}
                                 {auth.isLoggedIn && <NavLink to="/auth" className="prof-link" onClick={dropHandler} onMouseEnter={dropHandler} onMouseLeave={dropHandler} >
                                     <div className="prof-img">
                                         <img src={profileData.image} alt="" />
