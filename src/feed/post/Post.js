@@ -19,7 +19,6 @@ const Post = props => {
     })
     
     const posts = props.posts
-    console.log(posts);
     
     const authors = props.author
     // console.log(authors.name);
@@ -61,6 +60,7 @@ const Post = props => {
             })
         }
     }
+
     let darkClass = auth.isDark ? 'posts-dark' : 'posts-light'
     let likeClass = likedState.liked ? 'btn-liked' : 'btn-unliked'
     let linked
@@ -109,12 +109,12 @@ const Post = props => {
                                         }
                                     </div>
                                 </div>
-                                <div className="post-card_cust-footer">
+                                {/* <div className="post-card_cust-footer">
                                     <button className="like-btn">Like</button>
                                     <p>
                                         <span>89</span> Likes
                                     </p>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     )

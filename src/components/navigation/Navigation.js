@@ -106,7 +106,7 @@ const Navigation = (props) => {
                                 </NavLink>
                                 }
                                 <div className="pl-2 pr-2">
-                                    <Brightness4OutlinedIcon onClick={props.darkMode} className={darkIcon} />
+                                    {auth.isLoggedIn && <Brightness4OutlinedIcon onClick={props.darkMode} className={darkIcon} />}
                                 </div>
                             </Nav>
                             {/* <Nav>{auth.isLoggedin ? <NavLink to='/auth' onClick={auth.logout} className="prof-link">Logout</NavLink> : ''}</Nav> */}

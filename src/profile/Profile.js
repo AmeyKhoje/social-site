@@ -17,7 +17,7 @@ const Profile = (props) => {
     let darkProfPost = props.darkMode ? 'prof-card_dark' : 'prof-card_light'
     if(!data && !props.userposts){
         return (
-            <h1>
+            <h1 className={`  `}>
                 You Dont Have Any Posts
             </h1>
         )
@@ -26,7 +26,7 @@ const Profile = (props) => {
         <div>
             {data && <div className={`profile-container ${darkClass}`}>
                 <div className="profile-image">
-                    <img src={data.image} alt="" className="w-100" />
+                    <img src={data.image} alt="" />
                 </div>
                 <div className="profile-info">
                     <div>
@@ -66,7 +66,7 @@ const Profile = (props) => {
                     ))
                 }
                 {
-                    !props.userposts && <h4>
+                    !props.userposts && <h4 className="text-center">
                         Your Dont Have Any Posts To Show
                     </h4>
                 }

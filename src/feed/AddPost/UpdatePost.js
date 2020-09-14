@@ -63,10 +63,10 @@ const UpdatePost = () => {
                 .then(response => { console.log(response);
                  })
                 // console.log(responseData);
-                toast.success("Success Notification !", {
-                    position: toast.POSITION.TOP_CENTER
+                toast.success("Post Updated Successfully", {
+                    position: toast.POSITION.TOP_RIGHT
                   });
-                // history.push('/')
+                history.push('/profile')
             } catch (error) {
                 console.log('Cannot Update Post', error.toString());
                 

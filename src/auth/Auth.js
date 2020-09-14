@@ -7,6 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {css} from 'glamor'
 import {usePosition} from 'use-position'
+import { useForm } from 'react-hook-form'
 
 const Auth = () => {
     const auth = useContext(AuthContext)
@@ -19,6 +20,9 @@ const Auth = () => {
         password: '',
         name:''
     })
+
+    const { register, errors, handleSubmit } = useForm()
+
     useEffect(() => {
         if (!file) {
           return;
@@ -52,19 +56,21 @@ const Auth = () => {
     let date = new Date()
     let time = date.getTime()
     const authSubmit = async (e) => {
+        // console.log(e);
+        
         e.preventDefault()
         if(loggedIn){
             try {
                 await fetch(
-                  'http://localhost:5000/api/users/login',
-                  {method:'POST',
-                  body: JSON.stringify({
+                    'http://localhost:5000/api/users/login',
+                    {method:'POST',
+                    body: JSON.stringify({
                     email: login.email,
                     password: login.password
-                  }),
-                  headers: {
+                    }),
+                    headers: {
                     'Content-Type': 'application/json'
-                  }}
+                    }}
                 )
                 .then(async response => {
                     if(response.ok) {
@@ -111,21 +117,10 @@ const Auth = () => {
                         toast.error("Wrong Credentials.. Please Enter Correct One to Log in");
                     }
                 })
-                
-                // .then(response => {
-                //     auth.login(response.userId, response.token)
-                //     auth.userId(response.userId)
+                } catch (err) {
+                    toast.error("Server not responding");
                     
-                // })
-                
-                // console.log(responseData);
-                
-                // auth.login(responseData.userId, responseData.token);
-              } catch (err) {
-                  console.log('cantt');
-                  toast.error("Please try after some time");
-                  
-              }
+                }
         }
         else {
             console.log('sign-up');
@@ -153,27 +148,19 @@ const Auth = () => {
                         auth.login(testResp.userId, testResp.token)
                     }
                     else {
-                        toast.error("Wrong Credentials.. Please Enter Correct One to Log in");
+                        toast.error("Wrong Credentials.. Please check your credentials.");
                     }
                     
                 })
-                // .then(response => {
-                //     auth.login(response.userId, response.token)
-                //     // auth.userId(response.userId)
-                //     // toast.success("Welcome!!!");
-                // })
-                
                 
             } catch (error) {
-                console.log('cant sign in');
-                toast.error("Wrong Credentials.. Please Enter Correct One");
+                toast.error("Server not responding");
             }
         }
         
     }
     return (
         <form className="auth-container">
-            
             <Container>
                 <Grid sm={12} lg={4} className="m-auto">
                     <Card className="auth-card">
@@ -184,12 +171,9 @@ const Auth = () => {
                         </div>
                         {!loggedIn && (
                             <div>
-                                {/* <div>
-                                    <label>Enter Your Name:</label>
-                                </div> */}
                                 <div className="text-center input-cont">
-                                    {/* <input type="text" name="name" onChange={onChangeHandler} /> */}
-                                    <TextField id="outlined-basic" label="Name" variant="outlined" name="name" onChange={onChangeHandler} />
+                                    <TextField id="outlined-basic" label="Name" variant="outlined" name="name" onChange={onChangeHandler} ref={register({ required: true, minLength: 5 })} />
+                                    {errors.name && "Name is required with 5 charachers minumum"}
                                 </div>
                             </div>
                         ) }
@@ -204,30 +188,20 @@ const Auth = () => {
                                     <img src={previewUrl} alt="" className="img-fluid"/>
                                 </div>}
                                 <div>
-                                    <input type="file" accept=".png, .jpg, .jpeg" onChange={handleImageUpload} className="file-upload" />
+                                    <input type="file" accept=".png, .jpg, .jpeg" onChange={handleImageUpload} className="file-upload" name="file" />
                                 </div>
                             </div>
                         )}
                         <div>
-                            {/* <div>
-                                <label for="">
-                                    Enter email:
-                                </label>
-                            </div> */}
                             <div className="text-center input-cont">
-                                {/* <input type="text" name="email" onChange={onChangeHandler} /> */}
-                                <TextField id="outlined-basic" label="Email" variant="outlined" name="email" onChange={onChangeHandler} />
+                                <TextField id="outlined-basic" label="Email" variant="outlined" name="email" onChange={onChangeHandler} ref={register({ required: true })} />
+                                {errors.email && "Invalid email"}
                             </div>
                         </div>
                         <div>
-                            {/* <div>
-                                <label for="">
-                                    Enter Password:
-                                </label>
-                            </div> */}
                             <div className="text-center input-cont">
-                                {/* <input type="password" name="password" onChange={onChangeHandler} /> */}
-                                <TextField id="outlined-basic" label="Password" type="password" variant="outlined" name="password" onChange={onChangeHandler} />
+                                <TextField id="outlined-basic" label="Password" type="password" variant="outlined" name="password" ref={register({ required: true, minLength: 8, maxLength: 20 })} onChange={onChangeHandler} />
+                                {errors.password && "Invalid password"}
                             </div>
                         </div>
                         <div className="text-center input-cont">
@@ -243,7 +217,7 @@ const Auth = () => {
                     </Card>
                 </Grid>
             </Container>
-            <Particles
+            {/* <Particles
                params={{
                 "particles": {
                     "number": {
@@ -262,7 +236,7 @@ const Auth = () => {
                     }
                 }
             }} 
-            />
+            /> */}
             <ToastContainer />
         </form>
     )

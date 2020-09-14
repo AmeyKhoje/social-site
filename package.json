@@ -17,6 +17,7 @@
     "react-bootstrap": "^1.0.1",
     "react-detect-offline": "^2.4.0",
     "react-dom": "^16.13.1",
+    "react-hook-form": "^6.8.2",
     "react-icons": "^3.10.0",
     "react-indexed-db": "^1.0.12",
     "react-particles-js": "^3.2.1",

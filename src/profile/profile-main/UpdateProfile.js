@@ -62,14 +62,14 @@ const UpdateProfile = () => {
                 auth.login(response.id)
                 auth.userId(response.id)
             } )
-            // history.push('/profile')
+            history.push('/profile')
         } catch (error) {
             
         }
     }
 
     return (
-        <div  style={{ padding: 20, boxShadow: '0px 3px 6px 0px rgba(0,0,0,0.1)', width: '50%', margin: '50px auto 20px auto' }}>
+        <div style={{ padding: 20, boxShadow: '0px 3px 6px 0px rgba(0,0,0,0.1)', width: '50%', margin: '50px auto 20px auto' }}>
             <form onSubmit={updateProfileHandler}>
                 <div>
                     <input type="text" name="name" value={userInfoToUpdate.name} onChange={changeHandler} style={{ padding: 10, width: '100%', borderRadius: 5, marginBottom: 10 }} />

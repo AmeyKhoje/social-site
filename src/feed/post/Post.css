@@ -102,6 +102,11 @@ p {
     border-radius: 10px;
 }
 
+.posts-dark .post-card_cust {
+    background-color: #423D46;
+    box-shadow: 0px 3px 7px 0px rgba(255, 255, 255, 0.3), 0px -3px 5px 0px rgba(255, 255, 255, 0.3);
+}
+
 .post-card_cust {
     width: 380px;
     height: auto;
@@ -110,6 +115,7 @@ p {
     position: relative;
     margin: 20px 20px;
     background-color: rgb(89, 78, 163);
+    transition: all 2s;
 }
 
 .post-card_cust-avatar {

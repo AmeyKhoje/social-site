@@ -11,6 +11,21 @@ body {
     background-color: rgb(191, 189, 218);
 }
 
+body::-webkit-scrollbar {
+    width: 7px;
+    background-color: #121212;
+}
+
+body::-webkit-scrollbar-track {
+    background-color: rgb(141, 138, 187);
+    width: 7px;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #353131;
+    width: 7px;
+}
+
 .dark-back {
     background-color: #121212;
     min-height: 100vh;

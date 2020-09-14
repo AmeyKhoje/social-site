@@ -1,10 +1,14 @@
 .profile-container {
-    width: 550px;
+    width: max-content;
     margin: auto;
     margin-top: 50px;
     display: flex;
-    padding: 10px;
-    align-items: flex-start;
+    align-items: center;
+    padding: 20px;
+    box-shadow: 0px 5px 9px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 7px;
+    background-color: rgb(140, 187, 248);
+    transition: all 1s;
 }
 
 .prof-dark {
@@ -12,11 +16,17 @@
 }
 
 .prof-light {
-    background-color: crimson;
+    /* background-color: rgba(243, 240, 241, 0); */
+}
+
+.dark-back .profile-container .profile-info h3 {
+    color: rgb(202, 192, 192);
 }
 
 .profile-container .profile-image img {
-    height: 450px;
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
 }
 
 .profile-container .profile-info {
@@ -24,15 +34,17 @@
 }
 
 .profile-container .profile-info h3 {
+    transition: all 2s;
     margin: 0;
     text-align: center;
-    color: ghostwhite;
+    color: rgb(24, 24, 31);
 }
 
 .profile-container .profile-info p {
+    transition: all 0.5s;
     font-size: 16px;
     text-align: center;
-    color: gold;
+    color: rgb(51, 50, 47);
 }
 
 .prof-card_dark .user-posts_container {
@@ -41,6 +53,7 @@
     box-shadow: 18px 18px 18px #0a0c0c, -15px -15px 18px #2a3030;
     /* box-shadow: inset 5px 5px 10px #060707, inset -5px -5px 10px #0c0f0f; */
     padding: 10px;
+    border: 1px solid #423D46;
 }
 
 .prof-card_dark .user-posts_container .user-post_title,
@@ -57,23 +70,27 @@
 }
 
 .user-all_posts .user-posts_container {
-    width: 450px;
+    width: 370px;
     margin: auto;
     border-radius: 5px;
     /* padding: 20px; */
     margin: 20px auto;
+    border: 1px solid #423D46;
+    transition: all 1s;
 }
 
 .user-all_posts .user-posts_container .user-post_title {
-    font-size: 28px;
+    font-size: 20px;
     font-weight: 500;
     padding: 10px 20px 8px 20px;
+    line-height: 1;
 }
 
 .user-all_posts .user-posts_container .user-post_description {
     padding: 0 20px 10px 20px;
-    font-size: 22px;
+    font-size: 16px;
     font-weight: 400;
+    color: #423D46;
 }
 
 
