@@ -23,7 +23,7 @@
     "react-indexed-db": "^1.0.12",
     "react-particles-js": "^3.2.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
+    "react-scripts": "^3.4.3",
     "react-spinners": "^0.9.0",
     "react-toastify": "^6.0.6",
     "use-position": "0.0.7"
