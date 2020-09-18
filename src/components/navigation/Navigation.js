@@ -1,7 +1,7 @@
-import React, { useContext, useState, useEffect, useLayoutEffect } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { Grid } from '@material-ui/core'
 import { Link, NavLink } from 'react-router-dom'
-import { Navbar, Nav, NavItem, Container, Row, NavbarBrand, Collapse, Col } from 'react-bootstrap'
+import { Navbar, Nav, NavItem, Container, Row, NavbarBrand, Col } from 'react-bootstrap'
 import { AuthContext } from '../../context/auth-context'
 import Brightness4OutlinedIcon from '@material-ui/icons/Brightness4Outlined';
 import './Nav.css'
@@ -31,8 +31,7 @@ const Navigation = (props) => {
     const dropHandler = (e) => {
         e.preventDefault()
         if(toggleDrop === true) {
-            setToggleDrop(false)
-           
+            setToggleDrop(false) 
         }
         else {
             setToggleDrop(true)
@@ -40,15 +39,6 @@ const Navigation = (props) => {
         }
     }
     
-    // const darkModeHandler = () => {
-    //     if(isModeDark === false) {
-    //         setIsModeDark(true)
-    //         auth.isDark(true)
-    //         console.log(auth.isDark);
-            
-    //     }
-    // }
-    // let navClass = auth.isDark ? 'nvbar-cust_menu-dark' : 'navbar-cust_menu'
     let navMainClass = auth.isDark ? 'navbar-dark' : 'navbar-normal'
     let darkIcon = auth.isDark ? 'icon-dark' : 'icon-light'
     return (
@@ -76,9 +66,6 @@ const Navigation = (props) => {
                                 </NavItem>}
                             </Nav>
                             <Nav className="ml-auto mr-5 navbar-cust_menu align-items-center">
-                                {/* {!auth.isLoggedIn && <NavLink to='/auth' className="link-login">
-                                    Login
-                                </NavLink>} */}
                                 {auth.isLoggedIn && <NavLink to="/auth" className="prof-link" onClick={dropHandler} onMouseEnter={dropHandler} onMouseLeave={dropHandler} >
                                     <div className="prof-img">
                                         <img src={profileData.image} alt="" />
@@ -93,11 +80,6 @@ const Navigation = (props) => {
                                             </Link>
                                         </div>
                                         <div className="prof-drop_link-par">
-                                            <Link to="/profile">
-                                                Show Profile
-                                            </Link>
-                                        </div>
-                                        <div className="prof-drop_link-par">
                                             <Link onClick={auth.logout}>
                                                 Logout
                                             </Link>
@@ -109,7 +91,6 @@ const Navigation = (props) => {
                                     {auth.isLoggedIn && <Brightness4OutlinedIcon onClick={props.darkMode} className={darkIcon} />}
                                 </div>
                             </Nav>
-                            {/* <Nav>{auth.isLoggedin ? <NavLink to='/auth' onClick={auth.logout} className="prof-link">Logout</NavLink> : ''}</Nav> */}
                         </Navbar.Collapse>
                     </Navbar>
                 </Col>
