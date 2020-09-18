@@ -6,7 +6,7 @@ const Loading = () => {
     return (
         <div className="loading">
             <div className="loading__spin">
-                <CircularProgress />
+                <CircularProgress size="2rem" color="#000999" disableShrink thickness={4} />
             </div>
         </div>
     );
