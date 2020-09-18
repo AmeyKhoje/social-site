@@ -11,6 +11,7 @@ import Navigation from './components/navigation/Navigation'
 // import Form from './feed/AddPost/DbConfig/DbConfig';
 // import Auth from './auth/Auth'
 import { AuthContext } from './context/auth-context'
+import Loading from './components/Loading/Loading'
 // import ProfileInfo from './profile/profile-main/ProfileInfo';
 // import UpdatePost from './feed/AddPost/UpdatePost';
 // import AdminAuth from './auth/AdminAuth'
@@ -19,13 +20,58 @@ import { AuthContext } from './context/auth-context'
 // import UpdateProfile from './profile/profile-main/UpdateProfile'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-const Posts = React.lazy(() => import('./feed/Posts'));
-const AddPost = React.lazy(() => import('./feed/AddPost/AddPost'))
-const Auth = React.lazy(() => import('./auth/Auth'))
-const ProfileInfo = React.lazy(() => import('./profile/profile-main/ProfileInfo'))
-const UpdatePost = React.lazy(() => import('./feed/AddPost/UpdatePost'))
-const AdminAuth = React.lazy(() => import('./auth/AdminAuth'))
-const UpdateProfile = React.lazy(() => import('./profile/profile-main/UpdateProfile'))
+
+const Posts = React.lazy(() => 
+	new Promise((resolve, reject) =>
+		setTimeout(() => 
+			resolve(import('./feed/Posts'))
+		, 1000) 
+	)
+);
+const AddPost = React.lazy(() =>
+	new Promise((resolve, reject) => 
+		setTimeout(() =>
+			resolve(import('./feed/AddPost/AddPost'))
+		, 1000)
+	)
+)
+
+const Auth = React.lazy(() =>
+	new Promise((resolve, reject) =>
+		setTimeout(() =>
+			resolve(import('./auth/Auth'))
+		, 1000)
+	)
+)
+
+const ProfileInfo = React.lazy(() => 
+	new Promise((resolve, reject) => 
+		setTimeout(() => 
+			resolve(import('./profile/profile-main/ProfileInfo'))
+		, 1000)
+	)
+)
+const UpdatePost = React.lazy(() =>
+	new Promise((resolve, reject) =>
+		setTimeout(() =>
+			resolve(import('./feed/AddPost/UpdatePost'))
+		, 1000)
+	)
+)
+const AdminAuth = React.lazy(() =>
+	new Promise((resolve, reject) =>
+		setTimeout(() =>
+			resolve(import('./auth/AdminAuth'))
+		, 1000)
+	)
+)
+const UpdateProfile = React.lazy(() =>
+	new Promise((resolve, reject) =>
+		setTimeout(() =>
+			resolve(import('./profile/profile-main/UpdateProfile'))
+		, 1000)
+	)
+)
 
 
 let logoutTimer
@@ -122,7 +168,7 @@ const darkModeHandler = () => {
 		<Switch>
 			{/* <Suspense fallback={<div>Loading...</div>}> */}
 				<Route path="/" exact>
-					<Suspense fallback={<div>Loading...</div>}>
+					<Suspense fallback={<Loading />}>
 						<Posts />
 					</Suspense>
 				</Route>
@@ -130,7 +176,7 @@ const darkModeHandler = () => {
 					<Posts />
 				</Route> */}
 				<Route path="/addpost" exact>
-					<Suspense fallback={<div>Loading...</div>}>
+					<Suspense fallback={<Loading />}>
 						<AddPost />
 					</Suspense>
 				</Route>
@@ -138,17 +184,17 @@ const darkModeHandler = () => {
 					<Form />
 				</Route> */}
 				<Route path="/profile" exact>
-					<Suspense fallback={<div>Loading...</div>}>
+					<Suspense fallback={<Loading />}>
 						<ProfileInfo />
 					</Suspense>
 				</Route>
 				<Route path="/post/:postId">
-					<Suspense fallback={<div>Loading...</div>}>
+					<Suspense fallback={<Loading />}>
 						<UpdatePost />
 					</Suspense>
 				</Route>
 				<Route path="/editprof">
-					<Suspense fallback={<div>Loading...</div>}>
+					<Suspense fallback={<Loading />}>
 						<UpdateProfile />
 					</Suspense>
 				</Route>
@@ -159,9 +205,9 @@ const darkModeHandler = () => {
   } else {
 	  routes = (<Switch>
 		    
-			{/* <Suspense fallback={<div>Loading...</div>}> */}
+			{/* <Suspense fallback={<Loading />}> */}
 			<Route path="/auth" exact>
-				<Suspense fallback={<div>Loading...</div>}>
+				<Suspense fallback={<Loading />}>
 					<Auth />
 				</Suspense>
 			</Route>
