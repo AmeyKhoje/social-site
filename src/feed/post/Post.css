@@ -3,7 +3,7 @@
     display: flex;
     flex-wrap: wrap;
     transition: all 0.8s;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .post-single {

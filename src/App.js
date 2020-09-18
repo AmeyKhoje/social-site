@@ -1,23 +1,31 @@
-import React, {useState ,useCallback, useEffect} from 'react';
+import React, {useState ,useCallback, useEffect, Suspense} from 'react';
 import './App.css'
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import Navigation from './components/navigation/Navigation'
-import Layout from './components/layout/Layout';
-import Pract from './components/layout/test/Pract'
-import Y from './components/layout/Y';
-import Posts from './feed/Posts'
-import AddPost from './feed/AddPost/AddPost';
-import Form from './feed/AddPost/DbConfig/DbConfig';
-import Auth from './auth/Auth'
+// import Layout from './components/layout/Layout';
+// import Pract from './components/layout/test/Pract'
+// import Y from './components/layout/Y';
+// import Posts from './feed/Posts'
+
+// import AddPost from './feed/AddPost/AddPost';
+// import Form from './feed/AddPost/DbConfig/DbConfig';
+// import Auth from './auth/Auth'
 import { AuthContext } from './context/auth-context'
-import ProfileInfo from './profile/profile-main/ProfileInfo';
-import UpdatePost from './feed/AddPost/UpdatePost';
-import AdminAuth from './auth/AdminAuth'
+// import ProfileInfo from './profile/profile-main/ProfileInfo';
+// import UpdatePost from './feed/AddPost/UpdatePost';
+// import AdminAuth from './auth/AdminAuth'
 // import VerticalNav from './navigation/vertNav/VerticalNav'
-import VerticalNav from './components/navigation/vertNav/VerticalNav'
-import UpdateProfile from './profile/profile-main/UpdateProfile'
+// import VerticalNav from './components/navigation/vertNav/VerticalNav'
+// import UpdateProfile from './profile/profile-main/UpdateProfile'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+const Posts = React.lazy(() => import('./feed/Posts'));
+const AddPost = React.lazy(() => import('./feed/AddPost/AddPost'))
+const Auth = React.lazy(() => import('./auth/Auth'))
+const ProfileInfo = React.lazy(() => import('./profile/profile-main/ProfileInfo'))
+const UpdatePost = React.lazy(() => import('./feed/AddPost/UpdatePost'))
+const AdminAuth = React.lazy(() => import('./auth/AdminAuth'))
+const UpdateProfile = React.lazy(() => import('./profile/profile-main/UpdateProfile'))
 
 
 let logoutTimer
@@ -112,38 +120,52 @@ const darkModeHandler = () => {
   if (token) {
 	  routes = (
 		<Switch>
-			<Route path="/" exact>
-				<Posts />
-			</Route>
-			<Route path="/posts" exact>
-				<Posts />
-			</Route>
-			<Route path="/addpost" exact>
-				<AddPost />
-			</Route>
-			<Route path="/test">
-				<Form />
-			</Route>
-			<Route path="/profile">
-				<ProfileInfo />
-			</Route>
-			<Route path="/post/:postId">
-				<UpdatePost />
-			</Route>
-			<Route path="/editprof">
-				<UpdateProfile />
-			</Route>
+			{/* <Suspense fallback={<div>Loading...</div>}> */}
+				<Route path="/" exact>
+					<Suspense fallback={<div>Loading...</div>}>
+						<Posts />
+					</Suspense>
+				</Route>
+				{/* <Route path="/posts" exact>
+					<Posts />
+				</Route> */}
+				<Route path="/addpost" exact>
+					<Suspense fallback={<div>Loading...</div>}>
+						<AddPost />
+					</Suspense>
+				</Route>
+				{/* <Route path="/test">
+					<Form />
+				</Route> */}
+				<Route path="/profile" exact>
+					<Suspense fallback={<div>Loading...</div>}>
+						<ProfileInfo />
+					</Suspense>
+				</Route>
+				<Route path="/post/:postId">
+					<Suspense fallback={<div>Loading...</div>}>
+						<UpdatePost />
+					</Suspense>
+				</Route>
+				<Route path="/editprof">
+					<Suspense fallback={<div>Loading...</div>}>
+						<UpdateProfile />
+					</Suspense>
+				</Route>
+				{/* </Suspense> */}
 			<Redirect to="/" />
 		</Switch>
 	  )
   } else {
 	  routes = (<Switch>
-		    <Route path="/auth" exact>
-				<Auth />
+		    
+			{/* <Suspense fallback={<div>Loading...</div>}> */}
+			<Route path="/auth" exact>
+				<Suspense fallback={<div>Loading...</div>}>
+					<Auth />
+				</Suspense>
 			</Route>
-			<Route path="/admin" exact>
-				<AdminAuth />
-			</Route>
+			{/* </Suspense> */}
 			<Redirect to="/auth" />
 	  </Switch>)
   }
