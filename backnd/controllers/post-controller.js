@@ -35,13 +35,15 @@ const getPostByUserId = async(req, res, next) => {
 };
 
 const createPost = async(req, res, next) => {
-    const { title, description, image, author } = req.body
+    const { title, description, image, author, hashtags } = req.body
 
     const createdPost = new Post({
             title,
             description,
             image: 'http://localhost:5000/' + req.file.path,
-            author
+            // image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTSu5RVwzc8LFlzQ3hbeeGM2JSLw47uwgWaAg&usqp=CAU',
+            author,
+            hashtags
         })
         // console.log(createdPost);
 
@@ -62,9 +64,11 @@ const createPost = async(req, res, next) => {
     }
 
     try {
+        // await createdPost.hashtags.push(hashtags)
         await createdPost.save()
             // const sess = await mongoose.startSession();
             // console.log(sess)
+            
             // sess.startTransaction();
             // await createdPost.save({ session: sess });
         user.post.push(createdPost);

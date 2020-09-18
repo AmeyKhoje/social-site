@@ -10,7 +10,7 @@ router.post('/posts',
     fileUpload.single('image'), [
         check('title').not().isEmpty(),
         check('description').not().isEmpty(),
-        check('image').not().isEmpty()
+        // check('image').not().isEmpty()
     ], postController.createPost)
 
 router.get('/post', postController.getPost)
